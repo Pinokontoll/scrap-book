@@ -1,373 +1,303 @@
-<!doctype html>
-
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scrapbook untuk Kamu 💖</title>
-  <meta name="description" content="Scrapbook web romantis—satu file HTML, mudah diedit, cocok sebagai hadiah digital." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Scrapbook Cinta untuk Kamu 💖</title>
+  <meta name="description" content="Web scrapbook romantis: galeri, timeline kenangan, catatan cinta, dan playlist—semua dalam satu file." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Warna tema mudah disesuaikan */
-      --bg: #fff7fb;           /* pink sangat muda */
-      --paper: #fff;           /* kartu */
-      --ink: #4c3a4d;          /* teks utama */
-      --muted: #7a6a7c;        /* teks sekunder */
-      --brand: #ff7fbf;        /* aksen pink */
-      --accent: #ffd166;       /* aksen emas */
-      --tape: #f1e6ff;        /* warna selotip */
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --bg:#fff7fb;
+      --card:#ffffff;
+      --ink:#2b2b2b;
+      --muted:#6b7280;
+      --accent:#ff6ea7;  /* UBAH warna tema di sini */
+      --accent-2:#ffd1e2;
+      --ring: rgba(255,110,167,.35);
+      --shadow: 0 10px 25px rgba(255,110,167,.15);
+      --radius: 22px;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; color:var(--ink); font-family: Quicksand, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(255,127,191,.15), transparent 60%),
-        radial-gradient(1000px 450px at 110% 10%, rgba(255,209,102,.20), transparent 60%),
-        linear-gradient(180deg, var(--bg), #ffeef7 40%, var(--bg));
-      background-attachment: fixed;
-    }
-    a{color:inherit}
-    header{
-      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px);
-      background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
-      border-bottom:1px dashed rgba(76,58,77,.15);
-    }
-    .container{max-width:1100px;margin:0 auto; padding:0 18px}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .logo{display:flex;align-items:center;gap:.6rem}
-    .heart{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-      background: conic-gradient(from 220deg at 50% 50%, #ff9acb, #ffd6e9, #ff9acb);
-      box-shadow: var(--shadow);
-    }
-    .logo span{font-weight:800}
-    .btn{
-      display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:999px;
-      background:linear-gradient(180deg, rgba(255,154,203,.18), rgba(255,154,203,.07));
-      border:1px solid rgba(76,58,77,.15); box-shadow: var(--shadow); cursor:pointer;
-      font-weight:700; text-decoration:none
-    }
-    .grid{display:grid;gap:18px}
-    .two{grid-template-columns:1.2fr .8fr}
-    .three{grid-template-columns:repeat(3,1fr)}
-    @media (max-width: 900px){.two,.three{grid-template-columns:1fr}}.card{
-  position:relative; background:var(--paper); border-radius:18px; padding:18px; box-shadow: var(--shadow);
-  border:1px solid rgba(76,58,77,.08)
-}
-.tape{
-  position:absolute; height:26px; width:90px; background:var(--tape);
-  top:-12px; left:18px; transform:rotate(-4deg); box-shadow:0 4px 10px rgba(0,0,0,.08);
-  border-radius:6px; border:1px dashed rgba(76,58,77,.15)
-}
-.tape.r{left:auto; right:18px; transform:rotate(6deg)}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:var(--accent)}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px,100%);margin-inline:auto;padding:24px}
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.2) blur(8px);background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.35));border-bottom:1px solid #f3e7ef}
+    .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .heart{width:28px;height:28px;fill:var(--accent);filter:drop-shadow(0 6px 12px rgba(255,110,167,.35))}
+    .brand h1{font-family:'Sacramento',cursive;font-size:34px;margin:0;color:var(--accent)}
+    .nav a{font-weight:600;text-decoration:none;color:var(--ink)}
+    .nav .links{display:flex;gap:18px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:48px 24px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #ffe6f0}
+.card.pad{padding:28px}
+.hero-title{font-family:'Sacramento',cursive;font-size:64px;margin:0;color:var(--accent)}
+.hero p{margin:6px 0 0 0;color:var(--muted)}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--accent-2);color:#a12657;font-weight:700;letter-spacing:.3px}
+.chip{display:inline-flex;padding:8px 12px;border-radius:999px;border:1px dashed var(--accent);color:#a12657;background:#fff;gap:8px}
+.grid{display:grid;gap:18px}
+.grid.auto-2{grid-template-columns:repeat(2,1fr)}
+.grid.auto-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.grid.auto-2,.grid.auto-3{grid-template-columns:1fr}}
 
-.hero{padding:40px 0}
-.title{
-  font-family: Pacifico, cursive; font-size: clamp(28px, 6vw, 58px); line-height:1.05; margin:.2rem 0 .6rem;
-  background:linear-gradient(90deg, #ed64a6, #f6ad55); -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.lead{color:var(--muted)}
-
-/* Polaroid gallery */
-.polaroid{
-  background:#fff; padding:10px 10px 48px; border-radius:12px; box-shadow: var(--shadow);
-  transform: rotate(var(--rot, -2deg)); transition:.2s transform ease; border:1px solid rgba(0,0,0,.06);
-}
-.polaroid:hover{transform:rotate(0deg) scale(1.02)}
-.polaroid img{width:100%;height:240px;object-fit:cover;border-radius:8px}
-.cap{margin-top:8px;text-align:center;color:#6b5b6d;font-weight:700}
+.section{padding:36px 24px}
+.section h2{font-size:28px;margin:0 0 14px 0}
+.section .sub{color:var(--muted);margin-top:-6px}
 
 /* Timeline */
-.timeline{position:relative;padding-left:22px}
-.timeline:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:linear-gradient(#ff9acb,#ffd166)}
-.event{position:relative;margin:16px 0;padding-left:8px}
-.event:before{content:"❤";position:absolute;left:-2px;top:0; font-size:12px;color:#ff7fbf;background:#fff;border-radius:50%;padding:2px}
-.event .when{font-weight:800;color:#d94884}
-.event .desc{color:var(--muted)}
+.timeline{position:relative;margin:22px 0}
+.timeline::before{content:"";position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;background:linear-gradient(var(--accent),transparent);opacity:.25}
+.moment{position:relative;margin:24px 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.moment:nth-child(even) .moment-card{grid-column:1}
+.moment:nth-child(even) .moment-photo{grid-column:2}
+.moment:nth-child(odd) .moment-card{grid-column:2}
+.moment:nth-child(odd) .moment-photo{grid-column:1}
+.moment-dot{position:absolute;left:calc(50% - 8px);top:28px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 8px var(--ring)}
+.moment-card{padding:18px}
+.moment h3{margin:0 0 6px 0}
+.pill{font-size:12px;color:#a12657;background:var(--accent-2);display:inline-block;padding:6px 10px;border-radius:999px}
 
-/* Letter */
-.letter{font-size:18px;line-height:1.7}
-.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size:.9em; color:#6b5b6d}
+/* Galeri */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gallery img{border-radius:16px;border:1px solid #ffe6f0;cursor:pointer;transition:.25s transform}
+.gallery img:hover{transform:translateY(-4px)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;padding:24px}
+.lightbox img{max-height:80vh;border-radius:18px}
 
-/* Coupons */
-.coupons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width: 900px){.coupons{grid-template-columns:1fr}}
-.coupon{
-  background:repeating-linear-gradient(-45deg, #fff, #fff 8px, #fff3f8 8px, #fff3f8 16px);
-  border:2px dashed #ed64a6; border-radius:18px; padding:16px; text-align:center; font-weight:700;
+/* Catatan Cinta */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.note{background:#fffbe8;border:1px solid #fde68a;border-radius:14px;padding:16px;transform:rotate(-1deg)}
+.note:nth-child(2){background:#e9fbff;border-color:#bae6fd;transform:rotate(1deg)}
+.note:nth-child(3){background:#f6ecff;border-color:#e9d5ff;transform:rotate(-2deg)}
+.note .sig{font-family:'Sacramento',cursive;font-size:28px;color:#a12657;margin-top:10px}
+
+/* Kartu Kenangan */
+.memories{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.memory{position:relative;background:#fff;border:1px solid #ffe6f0;border-radius:16px;padding:12px;box-shadow:var(--shadow)}
+.memory .ph{aspect-ratio:4/3;background:#f7f7f7;border-radius:10px;overflow:hidden}
+.memory .caption{font-size:13px;color:var(--muted);margin-top:6px}
+
+@media (max-width:900px){
+  .notes{grid-template-columns:1fr}
+  .memories{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:1fr 1fr}
 }
 
-/* Sticky notes */
-.stickies{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-@media (max-width: 900px){.stickies{grid-template-columns:repeat(2,1fr)}}
-.sticky{background:#fff8c4; padding:16px 14px; border-radius:10px; transform:rotate(var(--r, -1.5deg));
-  box-shadow:0 10px 20px rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.06); min-height:110px; position:relative}
-.sticky:after{content:""; position:absolute; width:70px; height:18px; background:#f5e6a7; top:-8px; left:12px; transform:rotate(-3deg);
-  border-radius:4px; border:1px dashed rgba(0,0,0,.15)}
-
-/* Countdown */
-.countdown{display:flex;gap:12px;flex-wrap:wrap}
-.tile{background:var(--paper); border:1px solid rgba(0,0,0,.08); border-radius:14px; padding:12px 16px; text-align:center; box-shadow:var(--shadow)}
-.tile b{font-size:24px; display:block}
-.tile span{font-size:12px;color:var(--muted)}
-
 /* Footer */
-footer{padding:36px 0; color:#7a6a7c}
+footer{padding:32px 24px;color:var(--muted);text-align:center}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);font-weight:700}
+.btn.ghost{background:#fff;border:1px solid #ffd4e6;color:#a12657}
+.btn:active{transform:translateY(1px)}
 
-/* Lightbox modal */
-.lightbox{position:fixed; inset:0; background:rgba(0,0,0,.65); display:none; align-items:center; justify-content:center; z-index:100}
-.lightbox img{max-width:92vw; max-height:86vh; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.close{position:fixed; top:14px; right:14px}
-
-/* Falling petals */
-.petal{position:fixed; top:-20px; width:14px; height:14px; background:radial-gradient(circle at 30% 30%, #fff, #ff9acb);
-  border-radius:60% 40% 60% 40%; opacity:.7; animation: fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+/* Confetti hearts */
+canvas#confetti{position:fixed;inset:0;pointer-events:none}
 
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="logo">
-        <div class="heart" aria-hidden="true">💖</div>
-        <span id="brandName">Untuk Kamu</span>
+  <canvas id="confetti"></canvas>
+  <nav class="nav">
+    <div class="nav-inner container">
+      <div class="brand">
+        <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.001 4.529c2.349-2.532 6.151-2.532 8.5 0 2.349 2.531 2.349 6.64 0 9.172l-7.071 7.625a2 2 0 0 1-2.858 0L3.5 13.701c-2.349-2.532-2.349-6.64 0-9.172 2.349-2.532 6.151-2.532 8.5 0Z"/></svg>
+        <h1>Untuk Kamu 💗</h1>
       </div>
-      <div class="actions" style="display:flex;gap:8px;align-items:center">
-        <button class="btn" id="playBtn" aria-label="Putar musik">▶ Musik</button>
-        <a class="btn" href="#gallery">Galeri</a>
-      </div>
-    </div>
-  </header>  <!-- HERO -->  <section class="hero">
-    <div class="container grid two">
-      <div class="card">
-        <div class="tape"></div>
-        <h1 class="title">Hai, <span id="dearName">Sayang</span> ✨</h1>
-        <p class="lead">Aku bikin <b>web scrapbook</b> kecil ini khusus buat kamu. Tempat nyimpan momen-momen lucu, foto favorit, dan kata-kata yang belum sempat aku ucapkan. Semoga bikin kamu senyum setiap dibuka. 💐</p>
-        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px">
-          <a class="btn" href="#story">Kisah Kita</a>
-          <a class="btn" href="#letter">Surat Cinta</a>
-          <a class="btn" href="#coupons">Love Coupons</a>
-        </div>
-      </div>
-      <div class="card" style="display:grid; place-items:center">
-        <div class="tape r"></div>
-        <figure class="polaroid" style="--rot:-3deg; max-width:420px">
-          <img id="heroPhoto" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Foto kita berdua (ganti dengan fotomu)" />
-          <figcaption class="cap">Kamu + Aku = Kita 🤍</figcaption>
-        </figure>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#notes">Catatan</a>
+        <a href="#playlist">Playlist</a>
       </div>
     </div>
-  </section>  <div class="container">
-    <!-- OUR STORY -->
-    <section id="story" class="grid two" style="align-items:start">
-      <div class="card">
-        <div class="tape"></div>
-        <h2>Timeline Kisah Kita</h2>
-        <div class="timeline">
-          <div class="event">
-            <div class="when">14 Feb 2024 — Pertama Chat</div>
-            <div class="desc">Waktu itu aku pura-pura nanya tugas, padahal pengen kenal aja 🙈</div>
-          </div>
-          <div class="event">
-            <div class="when">02 Apr 2024 — Nonton bareng</div>
-            <div class="desc">Kamu ketawa keras banget pas adegan kocak. Aku jatuh cinta sama tawamu.</div>
-          </div>
-          <div class="event">
-            <div class="when">30 Jun 2024 — Resmi jadian</div>
-            <div class="desc">Hari paling manis. Kita janji saling jaga ya.</div>
-          </div>
+  </nav>  <header id="home" class="container hero">
+    <div class="card pad">
+      <span class="tag">Sejak 14 Februari 2023</span>
+      <h2 class="hero-title">Hai, Sayang ✨</h2>
+      <p>Aku bikin scrapbook kecil ini buat nyimpen momen-momen kita. Scroll pelan-pelan ya—ada foto, catatan, dan lagu-lagu favorit kita. Semoga bikin kamu senyum. 💕</p>
+      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn" onclick="shootHearts()">Lepas Konfeti 💘</button>
+        <a class="btn ghost" href="#timeline">Lihat Timeline</a>
+      </div>
+    </div>
+    <div class="grid auto-1">
+      <div class="card" style="overflow:hidden">
+        <!-- GANTI FOTO SAMPUL DI SINI -->
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop" alt="kita berdua" />
+      </div>
+    </div>
+  </header>  <section id="timeline" class="section container">
+    <h2>Timeline Kenangan</h2>
+    <p class="sub">Beberapa titik momen yang bikin kita makin dekat.</p>
+    <div class="timeline">
+      <div class="moment">
+        <span class="moment-dot"></span>
+        <div class="moment-photo">
+          <img class="card" src="https://images.unsplash.com/photo-1529634899234-6f6c1a3c8b06?q=80&w=1200&auto=format&fit=crop" alt="kencan pertama" />
+        </div>
+        <div class="moment-card card">
+          <span class="pill">14 Feb 2023</span>
+          <h3>Kencan Pertama</h3>
+          <p>Malam itu hujan rintik, kamu ketawa terus. Sejak itu aku tahu, pulang terbaik adalah kamu.</p>
         </div>
       </div>
-      <div class="card">
-        <div class="tape r"></div>
-        <h3>Video kenangan (opsional)</h3>
-        <p class="lead">Tempel link video TikTok/YouTube favorit kalian di bawah ini (ganti atribut <span class="mono">src</span> dengan link embed).</p>
-        <div style="aspect-ratio:16/9; background:#f9f0ff; border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,.08)">
-          <!-- Contoh YouTube embed: ganti VIDEO_ID -->
-          <iframe id="vid" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video kita" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0"></iframe>
+      <div class="moment">
+        <span class="moment-dot"></span>
+        <div class="moment-photo">
+          <img class="card" src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200&auto=format&fit=crop" alt="hadiah ulang tahun" />
+        </div>
+        <div class="moment-card card">
+          <span class="pill">12 Jul 2023</span>
+          <h3>Ulang Tahunmu</h3>
+          <p>Kue cokelat, lilin 21, dan harapan sederhana: semoga aku selalu ada di setiap tahunmu.</p>
         </div>
       </div>
-    </section><!-- GALLERY -->
-<section id="gallery" style="padding:24px 0">
-  <div class="card">
-    <div class="tape"></div>
+      <div class="moment">
+        <span class="moment-dot"></span>
+        <div class="moment-photo">
+          <img class="card" src="https://images.unsplash.com/photo-1520975682031-6c36d5a52cd0?q=80&w=1200&auto=format&fit=crop" alt="perjalanan" />
+        </div>
+        <div class="moment-card card">
+          <span class="pill">05 Mei 2024</span>
+          <h3>Trip Mini</h3>
+          <p>Kereta pagi, kopi sachet, playlist acak, dan pemandangan sawah—bahagia itu sederhana ya?</p>
+        </div>
+      </div>
+    </div>
+  </section>  <section id="gallery" class="section container">
     <h2>Galeri Foto</h2>
-    <p class="lead">Klik fotonya untuk lihat lebih besar. Tips: ganti <span class="mono">src</span> dengan link foto milik kamu.</p>
-    <div class="three grid" style="margin-top:10px">
-      <figure class="polaroid" style="--rot:-3deg">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" alt="Momen 1" data-full="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Jalan sore</figcaption>
-      </figure>
-      <figure class="polaroid" style="--rot:2.2deg">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop" alt="Momen 2" data-full="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Senja favorit</figcaption>
-      </figure>
-      <figure class="polaroid" style="--rot:-1deg">
-        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop" alt="Momen 3" data-full="https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Candid lucu</figcaption>
-      </figure>
-      <figure class="polaroid" style="--rot:3deg">
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="Momen 4" data-full="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Jajanan malam</figcaption>
-      </figure>
-      <figure class="polaroid" style="--rot:-2.5deg">
-        <img src="https://images.unsplash.com/photo-1460364157752-926555421a7e?q=80&w=1200&auto=format&fit=crop" alt="Momen 5" data-full="https://images.unsplash.com/photo-1460364157752-926555421a7e?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Hari hujan</figcaption>
-      </figure>
-      <figure class="polaroid" style="--rot:1.2deg">
-        <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=1200&auto=format&fit=crop" alt="Momen 6" data-full="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?q=80&w=2000&auto=format&fit=crop" />
-        <figcaption class="cap">Liburan</figcaption>
-      </figure>
+    <p class="sub">Klik fotonya untuk perbesar. Kamu boleh tambah foto sesuka hati. 📸</p>
+    <div class="gallery" aria-live="polite">
+      <!-- GANTI link gambar dengan foto kalian -->
+      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop" alt="momen 1" onclick="openLightbox(this)" />
+      <img src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?q=80&w=1200&auto=format&fit=crop" alt="momen 2" onclick="openLightbox(this)" />
+      <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac2?q=80&w=1200&auto=format&fit=crop" alt="momen 3" onclick="openLightbox(this)" />
+      <img src="https://images.unsplash.com/photo-1510279770292-4b34de9f5c23?q=80&w=1200&auto=format&fit=crop" alt="momen 4" onclick="openLightbox(this)" />
+      <img src="https://images.unsplash.com/photo-1520975922131-c8da8e6bf5a4?q=80&w=1200&auto=format&fit=crop" alt="momen 5" onclick="openLightbox(this)" />
+      <img src="https://images.unsplash.com/photo-1504194104404-433180773017?q=80&w=1200&auto=format&fit=crop" alt="momen 6" onclick="openLightbox(this)" />
     </div>
-  </div>
-</section>
-
-<!-- LETTER -->
-<section id="letter" style="padding:8px 0 24px">
-  <div class="card">
-    <div class="tape r"></div>
-    <h2>Surat Cinta</h2>
-    <div class="letter" id="letterText"></div>
-    <p class="mono" style="margin-top:10px">Tip: ubah isi surat di variabel <b>LETTER</b> (bagian &lt;script&gt; bawah).</p>
-  </div>
-</section>
-
-<!-- COUPONS -->
-<section id="coupons" style="padding:8px 0 24px">
-  <div class="card">
-    <div class="tape"></div>
-    <h2>Love Coupons 🎟️</h2>
-    <p class="lead">Klaim kapan pun—cukup tunjukkan halaman ini 😉</p>
-    <div class="coupons">
-      <div class="coupon">1x <b>Jajan kesukaanmu</b></div>
-      <div class="coupon">1x <b>Movie night di rumah</b></div>
-      <div class="coupon">Tak terbatas <b>Peluk hangat</b></div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()" aria-hidden="true" role="dialog">
+      <img id="lightboxImg" alt="preview" />
     </div>
-  </div>
-</section>
-
-<!-- STICKY NOTES -->
-<section style="padding:8px 0 24px">
-  <div class="card">
-    <div class="tape r"></div>
-    <h2>Catatan Kecil</h2>
-    <div class="stickies">
-      <div class="sticky" style="--r:-2deg">Minum air yang banyak ya 💧</div>
-      <div class="sticky" style="--r:1.5deg">Jangan tidur malam-malam 😴</div>
-      <div class="sticky" style="--r:-1deg">Kamu hebat, jangan ragu! ✨</div>
-      <div class="sticky" style="--r:2deg">I love u more each day 💗</div>
+  </section>  <section id="notes" class="section container">
+    <h2>Catatan Cinta</h2>
+    <p class="sub">Tiga alasan kenapa kamu selalu jadi rumah.</p>
+    <div class="notes">
+      <div class="note">
+        <strong>1) Ketawamu menular</strong>
+        <p>Hari paling berat pun jadi lebih ringan kalau kamu ada.</p>
+        <div class="sig">— aku</div>
+      </div>
+      <div class="note">
+        <strong>2) Kamu itu hangat</strong>
+        <p>Pelukanmu: tempat paling aman sedunia.</p>
+        <div class="sig">— aku</div>
+      </div>
+      <div class="note">
+        <strong>3) Kita tim</strong>
+        <p>Ngobrol, bercanda, berantem kecil, balik baik lagi. Selalu bareng.</p>
+        <div class="sig">— aku</div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- COUNTDOWN -->
-<section style="padding:8px 0 24px">
-  <div class="card">
-    <div class="tape"></div>
-    <h2>Hitung Mundur ke Anniversary</h2>
-    <div class="countdown" id="countdown"></div>
-    <p class="mono" style="margin-top:8px">Atur tanggal di variabel <b>ANNIVERSARY</b>.</p>
-  </div>
-</section>
-
-  </div>  <footer>
-    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <small>© <span id="year"></span> <span id="footerName">Kita Berdua</span>. Dibuat dengan cinta.</small>
-      <small><a href="#" onclick="scrollTo(0,0);return false">⬆ Kembali ke atas</a></small>
+  </section>  <section id="playlist" class="section container">
+    <h2>Playlist Kita</h2>
+    <p class="sub">Ganti dengan link Spotify/YouTube favorit kalian.</p>
+    <div class="card pad">
+      <!-- GANTI src embed di bawah ini -->
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0">
+        <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" title="Lagu Kita" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%"></iframe>
+      </div>
     </div>
-  </footer>  <!-- Lightbox Modal -->  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto besar">
-    <button class="btn close" onclick="closeLightbox()">Tutup ✖</button>
-    <img alt="Foto besar" />
-  </div>  <!-- Audio (opsional): ganti src dengan lagu mp3 kamu (pastikan punya hak pakai). -->  <audio id="bgm" preload="none" loop>
-    <source src="" type="audio/mpeg" />
-  </audio>  <script>
-    // ======== PERSONLISASI CEPAT =========
-    const NAMA_PACAR = "Sayang";          // Ganti nama panggilan
-    const BRAND = "Untuk Kamu";            // Ganti tulisan di pojok kiri atas
-    const LETTER = `
-    Hai ${NAMA_PACAR},
-
-    Terima kasih sudah hadir di hariku. Kamu bikin dunia terasa lebih hangat dan ringan. Kalau suatu saat kamu capek, istirahat di sini ya—di halaman kecil yang cuma buat kamu. Aku selalu di sampingmu. 💞
-
-    Dengan cinta,
-    Aku
-    `; // Ubah isi surat
-
-    // Format: YYYY-MM-DD
-    const ANNIVERSARY = "2025-12-30"; // Ganti tanggal penting kalian
-
-    document.getElementById('dearName').textContent = NAMA_PACAR;
-    document.getElementById('brandName').textContent = BRAND;
-    document.getElementById('footerName').textContent = BRAND;
+  </section>  <section class="section container">
+    <h2>Kartu Kenangan</h2>
+    <p class="sub">Potongan momen acak yang sayang kalau lupa.</p>
+    <div class="memories">
+      <div class="memory">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="kopi pagi"/></div>
+        <div class="caption">Kopi jam 7, nonton langit cerah.</div>
+      </div>
+      <div class="memory">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop" alt="jalan sore"/></div>
+        <div class="caption">Jalan sore—bahu nempel, hati tenang.</div>
+      </div>
+      <div class="memory">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1533135091724-62cc5402aa20?q=80&w=1200&auto=format&fit=crop" alt="film malam"/></div>
+        <div class="caption">Film jelek, tapi bareng kamu jadi favorit.</div>
+      </div>
+      <div class="memory">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f6?q=80&w=1200&auto=format&fit=crop" alt="ulang tahun"/></div>
+        <div class="caption">Lilin padam, doa kita lanjut.</div>
+      </div>
+    </div>
+  </section>  <section class="section container">
+    <div class="card pad" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between">
+      <div>
+        <h2>Aku Sayang Kamu, Selalu.</h2>
+        <p class="sub">Klik tombol di kanan kalau lagi kangen berat. 💞</p>
+      </div>
+      <button class="btn" onclick="shootHearts()">Kangen Mode</button>
+    </div>
+  </section>  <footer>
+    <p>Didesain dengan ❤️ oleh aku, khusus buat kamu. © <span id="year"></span></p>
+  </footer>  <script>
+    // Tahun dinamis
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ======== Typewriter untuk surat ========
-    const letterEl = document.getElementById('letterText');
-    const text = LETTER.trim();
-    let i = 0;
-    function type(){
-      if(i <= text.length){
-        letterEl.textContent = text.slice(0, i++);
-        setTimeout(type, 18);
-      }
-    }
-    type();
-
-    // ======== Countdown ========
-    function updateCountdown(){
-      const el = document.getElementById('countdown');
-      const target = new Date(ANNIVERSARY + 'T00:00:00');
-      const now = new Date();
-      const diff = Math.max(0, target - now);
-      const d = Math.floor(diff / (1000*60*60*24));
-      const h = Math.floor(diff / (1000*60*60) % 24);
-      const m = Math.floor(diff / (1000*60) % 60);
-      const s = Math.floor(diff / 1000 % 60);
-      el.innerHTML = `
-        <div class="tile"><b>${d}</b><span>hari</span></div>
-        <div class="tile"><b>${h}</b><span>jam</span></div>
-        <div class="tile"><b>${m}</b><span>menit</span></div>
-        <div class="tile"><b>${s}</b><span>detik</span></div>
-      `;
-    }
-    setInterval(updateCountdown, 1000); updateCountdown();
-
-    // ======== Lightbox Gallery ========
+    // Lightbox sederhana
     const lb = document.getElementById('lightbox');
-    const lbImg = lb.querySelector('img');
-    document.querySelectorAll('#gallery img').forEach(img=>{
-      img.addEventListener('click', ()=>{
-        lbImg.src = img.dataset.full || img.src;
-        lb.style.display = 'flex';
-      });
-    });
-    function closeLightbox(){ lb.style.display='none'; lbImg.removeAttribute('src'); }
-    window.closeLightbox = closeLightbox;
-    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLightbox(); });
+    const lbImg = document.getElementById('lightboxImg');
+    function openLightbox(el){ lbImg.src = el.src; lb.style.display = 'grid'; lb.setAttribute('aria-hidden','false'); }
+    function closeLightbox(){ lb.style.display = 'none'; lb.setAttribute('aria-hidden','true'); }
 
-    // ======== Musik tombol ========
-    const bgm = document.getElementById('bgm');
-    const playBtn = document.getElementById('playBtn');
-    let playing = false;
-    playBtn.addEventListener('click', async ()=>{
-      if(!playing){ try{ await bgm.play(); playing=true; playBtn.textContent='⏸ Musik'; } catch(e){ alert('Setel dulu sumber lagu di tag <audio>.'); } }
-      else { bgm.pause(); playing=false; playBtn.textContent='▶ Musik'; }
-    });
+    // Konfeti hati (tanpa library)
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let hearts = []; let running = false;
+    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+    addEventListener('resize', resize); resize();
 
-    // ======== Kelopak jatuh (petals) ========
-    function spawnPetal(){
-      const p = document.createElement('div'); p.className='petal';
-      p.style.left = Math.random()*100+'vw';
-      p.style.animationDuration = (6+Math.random()*6)+'s';
-      p.style.opacity = 0.5 + Math.random()*0.5;
-      document.body.appendChild(p);
-      setTimeout(()=>p.remove(), 12000);
+    function makeHeart(){
+      const x = Math.random()*canvas.width;
+      const y = -20; const size = 8 + Math.random()*14; const speed = 1 + Math.random()*2;
+      const rot = Math.random()*Math.PI; const drift = (Math.random()-.5)*1.5;
+      return {x,y,size,speed,rot,drift,life:0};
     }
-    for(let i=0;i<14;i++) setTimeout(spawnPetal, i*400);
-    setInterval(spawnPetal, 1200);
-  </script></body>
+    function drawHeart(h){
+      const s = h.size; ctx.save(); ctx.translate(h.x,h.y); ctx.rotate(h.rot);
+      ctx.fillStyle = 'rgba(255,110,167,'+(0.9 - h.life*0.001)+')';
+      ctx.beginPath();
+      ctx.moveTo(0, s/3);
+      ctx.bezierCurveTo(0, -s/2, -s, -s/2, -s, s/6);
+      ctx.bezierCurveTo(-s, s, -s/6, s*1.2, 0, s*1.6);
+      ctx.bezierCurveTo(s/6, s*1.2, s, s, s, s/6);
+      ctx.bezierCurveTo(s, -s/2, 0, -s/2, 0, s/3);
+      ctx.closePath(); ctx.fill(); ctx.restore();
+    }
+    function tick(){
+      if(!running) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      hearts.forEach(h=>{
+        h.y += h.speed; h.x += h.drift*Math.sin(h.life/20); h.rot += 0.01; h.life+=1;
+      });
+      hearts = hearts.filter(h=> h.y < canvas.height+40 && h.life < 1200);
+      hearts.forEach(drawHeart);
+      requestAnimationFrame(tick);
+    }
+    function shootHearts(){
+      for(let i=0;i<80;i++) hearts.push(makeHeart());
+      if(!running){ running = true; tick(); setTimeout(()=>running=false, 2500); }
+    }
+
+    // Smooth scroll untuk anchor
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); })
+    })
+  </script>  <!-- PETUNJUK CEPAT (hapus bagian ini jika sudah paham)
+    1) Ganti teks, tanggal, dan foto sesuai hubungan kalian.
+    2) Ubah warna tema di :root --accent (misal #8b5cf6 untuk ungu).
+    3) Hosting: cukup upload file ini ke hosting kamu sebagai index.html.
+    4) Tambah momen: duplikasi .moment pada bagian Timeline.
+    5) Tambah foto: tambahkan <img ... onclick="openLightbox(this)"> di .gallery.
+  --></body>
 </html>
