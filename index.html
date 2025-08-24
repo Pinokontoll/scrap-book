@@ -1,241 +1,125 @@
 <!doctype html>
-
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scrapbook Geser untuk Kamu 💗</title>
-  <meta name="description" content="Scrapbook romantis gaya slideshow—geser kiri/kanan, tombol custom per slide (ke ini / ke itu). Satu file HTML saja." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Untuk Kamu yang Cantik 💖</title>
+  <meta name="description" content="Halaman romantis spesial untuk kamu." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #fff6fb;         /* latar lembut */
-      --ink: #423645;        /* teks */
-      --muted:#7f6f86;
-      --paper:#ffffff;
-      --brand:#ff7ac8;       /* pink */
-      --brand-2:#ffd166;     /* emas */
-      --shadow: 0 10px 30px rgba(0,0,0,.12);
+      --bg: #fff0f6;
+      --bg-soft:#ffe4f0;
+      --card:#fff;
+      --txt:#5a2a4a;
+      --muted:#a05a7a;
+      --brand:#ff70a6;
+      --brand-2:#ffb3c6;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:
-      radial-gradient(1200px 500px at -10% 0%, rgba(255,122,200,.18), transparent 60%),
-      radial-gradient(1000px 800px at 110% -10%, rgba(255,209,102,.18), transparent 60%),
-      linear-gradient(180deg, var(--bg), #ffeef7 40%, var(--bg));
-      background-attachment: fixed;}.app{min-height:100%;display:flex;flex-direction:column}
-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(8px);
-  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
-  border-bottom:1px dashed rgba(0,0,0,.12)}
-.nav{max-width:1100px;margin:0 auto;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:.6rem}
-.heart{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg, #ff9ad0, #ffd6a5, #ff9ad0); box-shadow:var(--shadow)}
-.brand{font-weight:800}
-
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:999px;border:1px solid rgba(0,0,0,.1);
-  background:linear-gradient(180deg, rgba(255,122,200,.18), rgba(255,122,200,.04));box-shadow:var(--shadow);cursor:pointer;text-decoration:none;color:inherit;font-weight:700}
-.btn.alt{background:linear-gradient(180deg, rgba(255,209,102,.22), rgba(255,209,102,.06))}
-
-/* SLIDESHOW */
-.stage{position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:14px}
-.frame{width:100%;max-width:1100px;background:var(--paper);border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.08);overflow:hidden}
-.track{display:flex;will-change:transform;transition:transform .45s cubic-bezier(.22,.61,.36,1);}
-.slide{min-width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:0}
-@media (max-width: 900px){.slide{grid-template-columns:1fr;}}
-
-.photo{position:relative;height:68vh;min-height:360px;display:grid;place-items:center;background:#fdf2ff}
-.photo img{width:100%;height:100%;object-fit:cover}
-.caption{padding:22px;display:flex;flex-direction:column;gap:12px}
-.title{font-family:Pacifico,cursive;font-size:clamp(24px,4.6vw,42px);line-height:1.05;margin:0;background:linear-gradient(90deg,#ed64a6,#f6ad55);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:var(--muted)}
-.cta{display:flex;gap:10px;flex-wrap:wrap}
-
-/* Controls */
-.ctrl{position:absolute;inset:0;pointer-events:none}
-.ctrl button{pointer-events:auto;position:absolute;top:50%;transform:translateY(-50%);border:none;border-radius:999px;width:46px;height:46px;display:grid;place-items:center;background:rgba(255,255,255,.8);box-shadow:var(--shadow);cursor:pointer}
-.ctrl .prev{left:10px}
-.ctrl .next{right:10px}
-
-/* Dots */
-.dots{display:flex;justify-content:center;gap:8px;padding:12px}
-.dot{width:10px;height:10px;border-radius:999px;background:#e5d0ea;border:1px solid rgba(0,0,0,.08);cursor:pointer}
-.dot.active{background:linear-gradient(180deg,#ff7ac8,#ffd166)}
-
-/* Bottom sections */
-.container{max-width:1100px;margin:0 auto;padding:0 18px}
-section{padding:24px 0}
-
-/* Letter */
-.card{background:var(--paper);border:1px solid rgba(0,0,0,.08);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
-.letter{font-size:18px;line-height:1.7}
-
-footer{padding:36px 0;color:#7b6a83}
-
+    body{
+      margin:0;
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(800px 400px at 10% -10%, rgba(255,182,193,.35), transparent 60%),
+        radial-gradient(800px 400px at 90% 10%, rgba(255,105,180,.25), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-soft) 40%, var(--bg));
+      color:var(--txt);
+    }
+    header{
+      position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(255,240,246,.85);
+      border-bottom:1px solid rgba(255,105,180,.15);
+      z-index:50;
+    }
+    .container{max-width:900px;margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{font-family:'Pacifico',cursive;font-size:1.6em;color:var(--brand)}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      padding:.8rem 1.2rem;border-radius:14px;
+      background:linear-gradient(180deg,var(--brand),var(--brand-2));
+      color:white;font-weight:700;border:none;
+      box-shadow:0 6px 20px rgba(255,105,180,.4);
+      transition:.2s transform ease, .2s box-shadow ease;
+      text-decoration:none;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,105,180,.5)}
+    .hero{padding:72px 0 36px;text-align:center}
+    h1{font-size:clamp(28px, 6vw, 52px);line-height:1.1;margin:.2rem 0 .7rem;font-weight:800}
+    .lead{color:var(--muted);font-size:clamp(15px,1.7vw,18px);max-width:55ch;margin:0 auto}
+    .heart{
+      font-size:1.6em;color:var(--brand);display:inline-block;animation:float 2.5s infinite ease-in-out;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 6px 16px rgba(0,0,0,.08);
+      margin:16px 0;
+      text-align:center;
+    }
+    footer{padding:20px 0;text-align:center;font-size:.9em;color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <div class="nav">
-        <div class="logo"><div class="heart">💖</div><div class="brand" id="brand">Untuk Kamu</div></div>
-        <div style="display:flex;gap:8px">
-          <a class="btn" href="#surat">Surat Cinta</a>
-          <button class="btn alt" id="fs">Layar Penuh</button>
-        </div>
+  <header>
+    <div class="container nav">
+      <div class="logo">💖 LovePage</div>
+      <a href="#video" class="btn">Lihat Video</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Untuk Kamu yang Paling Cantik <span class="heart">♥</span></h1>
+      <p class="lead">Halaman kecil ini aku buat khusus untukmu. Semoga bisa jadi kenangan manis kita berdua 💕</p>
+      <div style="margin-top:20px">
+        <a href="#surat" class="btn">Baca Suratku</a>
       </div>
-    </header><!-- STAGE / SLIDES -->
-<main class="stage">
-  <div class="frame" id="frame" aria-roledescription="carousel" aria-label="Scrapbook slideshow" tabindex="0">
-    <div class="track" id="track">
-      <!-- Slide 1 -->
-      <article class="slide" data-ini="#slide-2" data-itu="#surat" data-ini-label="Ke Slide 2" data-itu-label="Ke Surat">
-        <figure class="photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 1"/></figure>
-        <div class="caption">
-          <h2 class="title">Hai, Sayang ✨</h2>
-          <p class="lead">Ini album kecil yang bisa kamu geser. Tiap slide punya tombol <b>ke ini</b> dan <b>ke itu</b>—bebas kamu arahkan ke halaman apa pun.</p>
-          <div class="cta">
-            <a class="btn go-ini" href="#">Ke Ini</a>
-            <a class="btn alt go-itu" href="#">Ke Itu</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Slide 2 -->
-      <article class="slide" data-ini="#slide-3" data-itu="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-ini-label="Lanjut" data-itu-label="Putar Lagu">
-        <figure class="photo"><img src="https://images.unsplash.com/photo-1535025287451-0e7529a26f78?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 2"/></figure>
-        <div class="caption">
-          <h2 class="title">Momen Favorit</h2>
-          <p class="lead">Ingat pertama kali kita tertawa bareng? Aku suka banget liat senyum kamu. 💞</p>
-          <div class="cta">
-            <a class="btn go-ini" href="#">Ke Ini</a>
-            <a class="btn alt go-itu" href="#">Ke Itu</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Slide 3 -->
-      <article class="slide" data-ini="#slide-1" data-itu="#surat" data-ini-label="Balik Awal" data-itu-label="Baca Surat">
-        <figure class="photo"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 3"/></figure>
-        <div class="caption">
-          <h2 class="title">Untuk Kita</h2>
-          <p class="lead">Aku bersyukur setiap hari ada kamu. Semoga halaman ini bikin kamu senyum, kapan pun kamu buka. 🌸</p>
-          <div class="cta">
-            <a class="btn go-ini" href="#">Ke Ini</a>
-            <a class="btn alt go-itu" href="#">Ke Itu</a>
-          </div>
-        </div>
-      </article>
     </div>
+  </section>
 
-    <div class="ctrl" aria-hidden="false" aria-label="Navigasi slide">
-      <button class="prev" id="prev" aria-label="Sebelumnya">◀</button>
-      <button class="next" id="next" aria-label="Berikutnya">▶</button>
+  <!-- Video Embed -->
+  <section id="video" class="container">
+    <div class="card">
+      <blockquote class="tiktok-embed"
+        cite="https://www.tiktok.com/@scout2015/video/6718335390845095173"
+        data-video-id="6718335390845095173"
+        style="max-width: 605px; min-width: 325px; margin:auto;">
+        <section>
+          <a target="_blank" title="@scout2015" href="https://www.tiktok.com/@scout2015">@scout2015</a>
+          <p>Contoh video romantis 💖</p>
+        </section>
+      </blockquote>
+      <script async src="https://www.tiktok.com/embed.js"></script>
     </div>
-  </div>
-</main>
+  </section>
 
-<div class="dots" id="dots" role="tablist" aria-label="Indikator slide"></div>
+  <!-- Surat cinta -->
+  <section id="surat" class="container">
+    <div class="card">
+      <h2>Surat Cinta Untukmu</h2>
+      <p>
+        Sayangku…<br><br>
+        Aku selalu bersyukur karena ada kamu di hidupku.  
+        Senyummu membuat hari-hariku lebih indah, dan cintamu adalah semangatku.  
+        Aku harap kita terus bersama, selamanya 💕
+      </p>
+    </div>
+  </section>
 
-<!-- SURAT CINTA -->
-<section id="surat" class="container">
-  <div class="card">
-    <h2 style="margin:.2rem 0 10px">Surat Cinta 💌</h2>
-    <div class="letter" id="letter"></div>
-    <p style="color:var(--muted);margin-top:8px">Ubah isi surat di variabel <code>LETTER</code> pada bagian &lt;script&gt;.</p>
-  </div>
-</section>
+  <footer>
+    © <span id="y"></span> Dari Aku untuk Kamu 💖
+  </footer>
 
-<footer>
-  <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <small>© <span id="y"></span> <span id="brandFoot">Kita Berdua</span></small>
-    <small><a href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false">⬆ Ke atas</a></small>
-  </div>
-</footer>
-
-  </div>  <script>
-    // ====== PERSONALISASI CEPAT ======
-    const BRAND = 'Untuk Kamu';
-    const LETTER = `Hai Sayang,\n\nTerima kasih sudah jadi rumah paling hangat buatku. Kalau hari kamu terasa berat, geser saja halaman ini pelan-pelan—semoga setiap foto mengingatkan kita pada tawa yang sama. Aku sayang kamu.\n\n— Aku`;
-
-    document.getElementById('brand').textContent = BRAND;
-    document.getElementById('brandFoot').textContent = BRAND;
+  <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Isi surat (typewriter ringan)
-    const letterEl = document.getElementById('letter');
-    let i=0; const txt=LETTER; (function type(){ if(i<=txt.length){ letterEl.textContent = txt.slice(0,i++); setTimeout(type,16);} })();
-
-    // ====== SLIDES / CAROUSEL LOGIC ======
-    const frame = document.getElementById('frame');
-    const track = document.getElementById('track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const dots = document.getElementById('dots');
-
-    // Beri id unik ke tiap slide
-    slides.forEach((s,idx)=>{ if(!s.id) s.id = `slide-${idx+1}`; });
-
-    let index = 0;
-    function go(i){
-      index = (i + slides.length) % slides.length;
-      const x = -index * frame.clientWidth;
-      track.style.transform = `translateX(${x}px)`;
-      updateDots();
-      // Perbarui tombol Ke Ini / Ke Itu per slide
-      const active = slides[index];
-      const iniHref = active.dataset.ini || '#';
-      const ituHref = active.dataset.itu || '#';
-      const iniLabel = active.dataset.iniLabel || 'Ke Ini';
-      const ituLabel = active.dataset.ituLabel || 'Ke Itu';
-      active.querySelectorAll('.go-ini').forEach(a=>{ a.href = iniHref; a.textContent = iniLabel; });
-      active.querySelectorAll('.go-itu').forEach(a=>{ a.href = ituHref; a.textContent = ituLabel; });
-    }
-
-    // Resize handler agar lebar track pas
-    function size(){ track.style.width = `${slides.length * frame.clientWidth}px`; go(index); }
-    window.addEventListener('resize', size); size();
-
-    prevBtn.addEventListener('click', ()=>go(index-1));
-    nextBtn.addEventListener('click', ()=>go(index+1));
-
-    // Keyboard
-    frame.addEventListener('keydown', e=>{ if(e.key==='ArrowLeft') go(index-1); if(e.key==='ArrowRight') go(index+1); });
-
-    // Swipe (touch)
-    let sx=0, dx=0, dragging=false;
-    frame.addEventListener('touchstart', e=>{ dragging=true; sx=e.touches[0].clientX; dx=0; }, {passive:true});
-    frame.addEventListener('touchmove', e=>{ if(!dragging) return; dx=e.touches[0].clientX - sx; track.style.transform = `translateX(${-index*frame.clientWidth + dx}px)`; }, {passive:true});
-    frame.addEventListener('touchend', ()=>{ dragging=false; if(Math.abs(dx)>50){ if(dx<0) go(index+1); else go(index-1);} else go(index); });
-
-    // Dots
-    function buildDots(){
-      dots.innerHTML = '';
-      slides.forEach((_,i)=>{ const b=document.createElement('button'); b.className='dot'; b.setAttribute('role','tab'); b.setAttribute('aria-label',`Slide ${i+1}`); b.addEventListener('click',()=>go(i)); dots.appendChild(b); });
-      updateDots();
-    }
-    function updateDots(){
-      Array.from(dots.children).forEach((d,i)=>{ d.classList.toggle('active', i===index); });
-    }
-    buildDots();
-    go(0);
-
-    // Fullscreen toggle
-    const fsBtn = document.getElementById('fs');
-    fsBtn.addEventListener('click', async ()=>{
-      const el = document.documentElement; // layar penuh seluruh dokumen
-      if(!document.fullscreenElement){ await el.requestFullscreen?.(); fsBtn.textContent='Keluar Layar Penuh'; }
-      else { await document.exitFullscreen?.(); fsBtn.textContent='Layar Penuh'; }
-    });
-
-    // ====== CARA KUSTOM SLIDE ======
-    // Per slide, atur atribut:
-    // data-ini:    href untuk tombol "Ke Ini" (contoh: #slide-3 atau https://...)
-    // data-itu:    href untuk tombol "Ke Itu" (contoh: #surat atau https://...)
-    // data-ini-label: teks tombol "Ke Ini"
-    // data-itu-label: teks tombol "Ke Itu"
-    // Ganti gambar: <img src="..."> dan teks caption sesuai kebutuhan.
-  </script></body>
+  </script>
+</body>
 </html>
