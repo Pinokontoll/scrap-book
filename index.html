@@ -92,7 +92,6 @@ footer{padding:32px 24px;color:var(--muted);text-align:center}
 
 /* Confetti hearts */
 canvas#confetti{position:fixed;inset:0;pointer-events:none}
-
   </style>
 </head>
 <body>
@@ -111,7 +110,9 @@ canvas#confetti{position:fixed;inset:0;pointer-events:none}
         <a href="#playlist">Playlist</a>
       </div>
     </div>
-  </nav>  <header id="home" class="container hero">
+  </nav>  
+
+  <header id="home" class="container hero">
     <div class="card pad">
       <span class="tag">Sejak 08 Agustus 2025</span>
       <h2 class="hero-title">Hai, Sayang ✨</h2>
@@ -123,11 +124,12 @@ canvas#confetti{position:fixed;inset:0;pointer-events:none}
     </div>
     <div class="grid auto-1">
       <div class="card" style="overflow:hidden">
-        <!-- GANTI FOTO SAMPUL DI SINI -->
         <img src="https://i.postimg.cc/4xYHb2pt/IMG-20250824-WA0018.jpg" alt="kita berdua" />
       </div>
     </div>
-  </header>  <section id="timeline" class="section container">
+  </header>  
+
+  <section id="timeline" class="section container">
     <h2>Timeline Kenangan</h2>
     <p class="sub">Beberapa titik momen yang bikin kita makin dekat.</p>
     <div class="timeline">
@@ -139,7 +141,7 @@ canvas#confetti{position:fixed;inset:0;pointer-events:none}
         <div class="moment-card card">
           <span class="pill">12 Agustus 2025</span>
           <h3>di pagi saat matahari bersinar terang
-lelah lelah ku hilang saat ada di sisimu.</p>
+lelah lelah ku hilang saat ada di sisimu.</h3>
         </div>
       </div>
       <div class="moment">
@@ -154,11 +156,12 @@ lelah lelah ku hilang saat ada di sisimu.</p>
         </div>
       </div>
     </div>
-  </section>  <section id="gallery" class="section container">
+  </section>  
+
+  <section id="gallery" class="section container">
     <h2>Galeri Foto</h2>
     <p class="sub">Foto favoritku</p>
     <div class="gallery" aria-live="polite">
-      <!-- GANTI link gambar dengan foto kalian -->
       <img src="https://i.postimg.cc/8kyCKBpb/IMG-20250815-WA0037.jpg" alt="momen 1" onclick="openLightbox(this)" />
       <img src="https://i.postimg.cc/GhHmZ89n/IMG-20250818-202803.jpg" alt="momen 2" onclick="openLightbox(this)" />
       <img src="https://i.postimg.cc/rsYFDcnH/IMG-20250821-214941.jpg" alt="momen 3" onclick="openLightbox(this)" />
@@ -167,7 +170,9 @@ lelah lelah ku hilang saat ada di sisimu.</p>
     <div class="lightbox" id="lightbox" onclick="closeLightbox()" aria-hidden="true" role="dialog">
       <img id="lightboxImg" alt="preview" />
     </div>
-  </section>  <section id="notes" class="section container">
+  </section>  
+
+  <section id="notes" class="section container">
     <h2>Catatan Cinta</h2>
     <p class="sub">Tiga alasan kenapa kamu selalu jadi rumah.</p>
     <div class="notes">
@@ -192,20 +197,24 @@ aku harap kmu bisa nerima kekurangan ku ini</p>
         <div class="sig">— aku</div>
       </div>
     </div>
-  </section>  <section id="playlist" class="section container">
-  <h2>Playlist Kita</h2>
-  <p class="sub">Lagu yang kamu tulis di Notebook kala itu.</p>
-  <div class="card pad">
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0">
-      <iframe src="https://www.youtube.com/embed/s6H6ffS6zJI"
-        title="Lagu Kita" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="position:absolute; inset:0; width:100%; height:100%">
-      </iframe>
+  </section>  
+
+  <section id="playlist" class="section container">
+    <h2>Playlist Kita</h2>
+    <p class="sub">Lagu yang kamu tulis di Notebook kala itu.</p>
+    <div class="card pad">
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0">
+        <iframe src="https://www.youtube.com/embed/s6H6ffS6zJI?autoplay=1&mute=1"
+          title="Lagu Kita" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="position:absolute; inset:0; width:100%; height:100%">
+        </iframe>
+      </div>
     </div>
-  </div>
-</section>  <section class="section container">
+  </section>  
+
+  <section class="section container">
     <div class="card pad" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between">
       <div>
         <h2>Aku Sayang Kamu, Selalu.</h2>
@@ -213,19 +222,20 @@ aku harap kmu bisa nerima kekurangan ku ini</p>
       </div>
       <button class="btn" onclick="shootHearts()">PLEASE TOUCH</button>
     </div>
-  </section>  <footer>
+  </section>  
+
+  <footer>
     <p>Didesain dengan ❤️ oleh aku, khusus buat kamu. © <span id="year"></span></p>
-  </footer>  <script>
-    // Tahun dinamis
+  </footer>  
+
+  <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Lightbox sederhana
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
     function openLightbox(el){ lbImg.src = el.src; lb.style.display = 'grid'; lb.setAttribute('aria-hidden','false'); }
     function closeLightbox(){ lb.style.display = 'none'; lb.setAttribute('aria-hidden','true'); }
 
-    // Konfeti hati (tanpa library)
     const canvas = document.getElementById('confetti');
     const ctx = canvas.getContext('2d');
     let hearts = []; let running = false;
@@ -244,35 +254,4 @@ aku harap kmu bisa nerima kekurangan ku ini</p>
       ctx.beginPath();
       ctx.moveTo(0, s/3);
       ctx.bezierCurveTo(0, -s/2, -s, -s/2, -s, s/6);
-      ctx.bezierCurveTo(-s, s, -s/6, s*1.2, 0, s*1.6);
-      ctx.bezierCurveTo(s/6, s*1.2, s, s, s, s/6);
-      ctx.bezierCurveTo(s, -s/2, 0, -s/2, 0, s/3);
-      ctx.closePath(); ctx.fill(); ctx.restore();
-    }
-    function tick(){
-      if(!running) return;
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      hearts.forEach(h=>{
-        h.y += h.speed; h.x += h.drift*Math.sin(h.life/20); h.rot += 0.01; h.life+=1;
-      });
-      hearts = hearts.filter(h=> h.y < canvas.height+40 && h.life < 1200);
-      hearts.forEach(drawHeart);
-      requestAnimationFrame(tick);
-    }
-    function shootHearts(){
-      for(let i=0;i<80;i++) hearts.push(makeHeart());
-      if(!running){ running = true; tick(); setTimeout(()=>running=false, 2500); }
-    }
-
-    // Smooth scroll untuk anchor
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); })
-    })
-  </script>  <!-- PETUNJUK CEPAT (hapus bagian ini jika sudah paham)
-    1) Ganti teks, tanggal, dan foto sesuai hubungan kalian.
-    2) Ubah warna tema di :root --accent (misal #8b5cf6 untuk ungu).
-    3) Hosting: cukup upload file ini ke hosting kamu sebagai index.html.
-    4) Tambah momen: duplikasi .moment pada bagian Timeline.
-    5) Tambah foto: tambahkan <img ... onclick="openLightbox(this)"> di .gallery.
-  --></body>
-</html>
+      ctx.bezierCurveTo(-s, s, -s/6,
