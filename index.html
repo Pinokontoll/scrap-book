@@ -1,303 +1,241 @@
-<!DOCTYPE html><html lang="id">
+<!doctype html>
+
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scrapbook Cinta untuk Kamu 💖</title>
-  <meta name="description" content="Web scrapbook romantis: galeri, timeline kenangan, catatan cinta, dan playlist—semua dalam satu file." />
+  <title>Scrapbook Geser untuk Kamu 💗</title>
+  <meta name="description" content="Scrapbook romantis gaya slideshow—geser kiri/kanan, tombol custom per slide (ke ini / ke itu). Satu file HTML saja." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#fff7fb;
-      --card:#ffffff;
-      --ink:#2b2b2b;
-      --muted:#6b7280;
-      --accent:#ff6ea7;  /* UBAH warna tema di sini */
-      --accent-2:#ffd1e2;
-      --ring: rgba(255,110,167,.35);
-      --shadow: 0 10px 25px rgba(255,110,167,.15);
-      --radius: 22px;
+      --bg: #fff6fb;         /* latar lembut */
+      --ink: #423645;        /* teks */
+      --muted:#7f6f86;
+      --paper:#ffffff;
+      --brand:#ff7ac8;       /* pink */
+      --brand-2:#ffd166;     /* emas */
+      --shadow: 0 10px 30px rgba(0,0,0,.12);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
-    a{color:var(--accent)}
-    img{max-width:100%;display:block}
-    .container{width:min(1100px,100%);margin-inline:auto;padding:24px}
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.2) blur(8px);background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.35));border-bottom:1px solid #f3e7ef}
-    .nav-inner{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .heart{width:28px;height:28px;fill:var(--accent);filter:drop-shadow(0 6px 12px rgba(255,110,167,.35))}
-    .brand h1{font-family:'Sacramento',cursive;font-size:34px;margin:0;color:var(--accent)}
-    .nav a{font-weight:600;text-decoration:none;color:var(--ink)}
-    .nav .links{display:flex;gap:18px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:48px 24px}
-.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #ffe6f0}
-.card.pad{padding:28px}
-.hero-title{font-family:'Sacramento',cursive;font-size:64px;margin:0;color:var(--accent)}
-.hero p{margin:6px 0 0 0;color:var(--muted)}
-.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:var(--accent-2);color:#a12657;font-weight:700;letter-spacing:.3px}
-.chip{display:inline-flex;padding:8px 12px;border-radius:999px;border:1px dashed var(--accent);color:#a12657;background:#fff;gap:8px}
-.grid{display:grid;gap:18px}
-.grid.auto-2{grid-template-columns:repeat(2,1fr)}
-.grid.auto-3{grid-template-columns:repeat(3,1fr)}
-@media (max-width:900px){.hero{grid-template-columns:1fr}.grid.auto-2,.grid.auto-3{grid-template-columns:1fr}}
+    html,body{height:100%;margin:0}
+    body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--ink);background:
+      radial-gradient(1200px 500px at -10% 0%, rgba(255,122,200,.18), transparent 60%),
+      radial-gradient(1000px 800px at 110% -10%, rgba(255,209,102,.18), transparent 60%),
+      linear-gradient(180deg, var(--bg), #ffeef7 40%, var(--bg));
+      background-attachment: fixed;}.app{min-height:100%;display:flex;flex-direction:column}
+header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(150%) blur(8px);
+  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
+  border-bottom:1px dashed rgba(0,0,0,.12)}
+.nav{max-width:1100px;margin:0 auto;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:.6rem}
+.heart{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:conic-gradient(from 210deg, #ff9ad0, #ffd6a5, #ff9ad0); box-shadow:var(--shadow)}
+.brand{font-weight:800}
 
-.section{padding:36px 24px}
-.section h2{font-size:28px;margin:0 0 14px 0}
-.section .sub{color:var(--muted);margin-top:-6px}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:999px;border:1px solid rgba(0,0,0,.1);
+  background:linear-gradient(180deg, rgba(255,122,200,.18), rgba(255,122,200,.04));box-shadow:var(--shadow);cursor:pointer;text-decoration:none;color:inherit;font-weight:700}
+.btn.alt{background:linear-gradient(180deg, rgba(255,209,102,.22), rgba(255,209,102,.06))}
 
-/* Timeline */
-.timeline{position:relative;margin:22px 0}
-.timeline::before{content:"";position:absolute;left:calc(50% - 2px);top:0;bottom:0;width:4px;background:linear-gradient(var(--accent),transparent);opacity:.25}
-.moment{position:relative;margin:24px 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.moment:nth-child(even) .moment-card{grid-column:1}
-.moment:nth-child(even) .moment-photo{grid-column:2}
-.moment:nth-child(odd) .moment-card{grid-column:2}
-.moment:nth-child(odd) .moment-photo{grid-column:1}
-.moment-dot{position:absolute;left:calc(50% - 8px);top:28px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 8px var(--ring)}
-.moment-card{padding:18px}
-.moment h3{margin:0 0 6px 0}
-.pill{font-size:12px;color:#a12657;background:var(--accent-2);display:inline-block;padding:6px 10px;border-radius:999px}
+/* SLIDESHOW */
+.stage{position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:14px}
+.frame{width:100%;max-width:1100px;background:var(--paper);border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.08);overflow:hidden}
+.track{display:flex;will-change:transform;transition:transform .45s cubic-bezier(.22,.61,.36,1);}
+.slide{min-width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:0}
+@media (max-width: 900px){.slide{grid-template-columns:1fr;}}
 
-/* Galeri */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.gallery img{border-radius:16px;border:1px solid #ffe6f0;cursor:pointer;transition:.25s transform}
-.gallery img:hover{transform:translateY(-4px)}
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;place-items:center;padding:24px}
-.lightbox img{max-height:80vh;border-radius:18px}
+.photo{position:relative;height:68vh;min-height:360px;display:grid;place-items:center;background:#fdf2ff}
+.photo img{width:100%;height:100%;object-fit:cover}
+.caption{padding:22px;display:flex;flex-direction:column;gap:12px}
+.title{font-family:Pacifico,cursive;font-size:clamp(24px,4.6vw,42px);line-height:1.05;margin:0;background:linear-gradient(90deg,#ed64a6,#f6ad55);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted)}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
 
-/* Catatan Cinta */
-.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.note{background:#fffbe8;border:1px solid #fde68a;border-radius:14px;padding:16px;transform:rotate(-1deg)}
-.note:nth-child(2){background:#e9fbff;border-color:#bae6fd;transform:rotate(1deg)}
-.note:nth-child(3){background:#f6ecff;border-color:#e9d5ff;transform:rotate(-2deg)}
-.note .sig{font-family:'Sacramento',cursive;font-size:28px;color:#a12657;margin-top:10px}
+/* Controls */
+.ctrl{position:absolute;inset:0;pointer-events:none}
+.ctrl button{pointer-events:auto;position:absolute;top:50%;transform:translateY(-50%);border:none;border-radius:999px;width:46px;height:46px;display:grid;place-items:center;background:rgba(255,255,255,.8);box-shadow:var(--shadow);cursor:pointer}
+.ctrl .prev{left:10px}
+.ctrl .next{right:10px}
 
-/* Kartu Kenangan */
-.memories{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.memory{position:relative;background:#fff;border:1px solid #ffe6f0;border-radius:16px;padding:12px;box-shadow:var(--shadow)}
-.memory .ph{aspect-ratio:4/3;background:#f7f7f7;border-radius:10px;overflow:hidden}
-.memory .caption{font-size:13px;color:var(--muted);margin-top:6px}
+/* Dots */
+.dots{display:flex;justify-content:center;gap:8px;padding:12px}
+.dot{width:10px;height:10px;border-radius:999px;background:#e5d0ea;border:1px solid rgba(0,0,0,.08);cursor:pointer}
+.dot.active{background:linear-gradient(180deg,#ff7ac8,#ffd166)}
 
-@media (max-width:900px){
-  .notes{grid-template-columns:1fr}
-  .memories{grid-template-columns:repeat(2,1fr)}
-  .gallery{grid-template-columns:1fr 1fr}
-}
+/* Bottom sections */
+.container{max-width:1100px;margin:0 auto;padding:0 18px}
+section{padding:24px 0}
 
-/* Footer */
-footer{padding:32px 24px;color:var(--muted);text-align:center}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);font-weight:700}
-.btn.ghost{background:#fff;border:1px solid #ffd4e6;color:#a12657}
-.btn:active{transform:translateY(1px)}
+/* Letter */
+.card{background:var(--paper);border:1px solid rgba(0,0,0,.08);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.letter{font-size:18px;line-height:1.7}
 
-/* Confetti hearts */
-canvas#confetti{position:fixed;inset:0;pointer-events:none}
+footer{padding:36px 0;color:#7b6a83}
 
   </style>
 </head>
 <body>
-  <canvas id="confetti"></canvas>
-  <nav class="nav">
-    <div class="nav-inner container">
-      <div class="brand">
-        <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.001 4.529c2.349-2.532 6.151-2.532 8.5 0 2.349 2.531 2.349 6.64 0 9.172l-7.071 7.625a2 2 0 0 1-2.858 0L3.5 13.701c-2.349-2.532-2.349-6.64 0-9.172 2.349-2.532 6.151-2.532 8.5 0Z"/></svg>
-        <h1>Untuk Kamu 💗</h1>
-      </div>
-      <div class="links">
-        <a href="#home">Home</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#gallery">Galeri</a>
-        <a href="#notes">Catatan</a>
-        <a href="#playlist">Playlist</a>
-      </div>
-    </div>
-  </nav>  <header id="home" class="container hero">
-    <div class="card pad">
-      <span class="tag">Sejak 14 Februari 2023</span>
-      <h2 class="hero-title">Hai, Sayang ✨</h2>
-      <p>Aku bikin scrapbook kecil ini buat nyimpen momen-momen kita. Scroll pelan-pelan ya—ada foto, catatan, dan lagu-lagu favorit kita. Semoga bikin kamu senyum. 💕</p>
-      <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="btn" onclick="shootHearts()">Lepas Konfeti 💘</button>
-        <a class="btn ghost" href="#timeline">Lihat Timeline</a>
-      </div>
-    </div>
-    <div class="grid auto-1">
-      <div class="card" style="overflow:hidden">
-        <!-- GANTI FOTO SAMPUL DI SINI -->
-        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop" alt="kita berdua" />
-      </div>
-    </div>
-  </header>  <section id="timeline" class="section container">
-    <h2>Timeline Kenangan</h2>
-    <p class="sub">Beberapa titik momen yang bikin kita makin dekat.</p>
-    <div class="timeline">
-      <div class="moment">
-        <span class="moment-dot"></span>
-        <div class="moment-photo">
-          <img class="card" src="https://images.unsplash.com/photo-1529634899234-6f6c1a3c8b06?q=80&w=1200&auto=format&fit=crop" alt="kencan pertama" />
-        </div>
-        <div class="moment-card card">
-          <span class="pill">14 Feb 2023</span>
-          <h3>Kencan Pertama</h3>
-          <p>Malam itu hujan rintik, kamu ketawa terus. Sejak itu aku tahu, pulang terbaik adalah kamu.</p>
+  <div class="app">
+    <header>
+      <div class="nav">
+        <div class="logo"><div class="heart">💖</div><div class="brand" id="brand">Untuk Kamu</div></div>
+        <div style="display:flex;gap:8px">
+          <a class="btn" href="#surat">Surat Cinta</a>
+          <button class="btn alt" id="fs">Layar Penuh</button>
         </div>
       </div>
-      <div class="moment">
-        <span class="moment-dot"></span>
-        <div class="moment-photo">
-          <img class="card" src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1200&auto=format&fit=crop" alt="hadiah ulang tahun" />
+    </header><!-- STAGE / SLIDES -->
+<main class="stage">
+  <div class="frame" id="frame" aria-roledescription="carousel" aria-label="Scrapbook slideshow" tabindex="0">
+    <div class="track" id="track">
+      <!-- Slide 1 -->
+      <article class="slide" data-ini="#slide-2" data-itu="#surat" data-ini-label="Ke Slide 2" data-itu-label="Ke Surat">
+        <figure class="photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 1"/></figure>
+        <div class="caption">
+          <h2 class="title">Hai, Sayang ✨</h2>
+          <p class="lead">Ini album kecil yang bisa kamu geser. Tiap slide punya tombol <b>ke ini</b> dan <b>ke itu</b>—bebas kamu arahkan ke halaman apa pun.</p>
+          <div class="cta">
+            <a class="btn go-ini" href="#">Ke Ini</a>
+            <a class="btn alt go-itu" href="#">Ke Itu</a>
+          </div>
         </div>
-        <div class="moment-card card">
-          <span class="pill">12 Jul 2023</span>
-          <h3>Ulang Tahunmu</h3>
-          <p>Kue cokelat, lilin 21, dan harapan sederhana: semoga aku selalu ada di setiap tahunmu.</p>
-        </div>
-      </div>
-      <div class="moment">
-        <span class="moment-dot"></span>
-        <div class="moment-photo">
-          <img class="card" src="https://images.unsplash.com/photo-1520975682031-6c36d5a52cd0?q=80&w=1200&auto=format&fit=crop" alt="perjalanan" />
-        </div>
-        <div class="moment-card card">
-          <span class="pill">05 Mei 2024</span>
-          <h3>Trip Mini</h3>
-          <p>Kereta pagi, kopi sachet, playlist acak, dan pemandangan sawah—bahagia itu sederhana ya?</p>
-        </div>
-      </div>
-    </div>
-  </section>  <section id="gallery" class="section container">
-    <h2>Galeri Foto</h2>
-    <p class="sub">Klik fotonya untuk perbesar. Kamu boleh tambah foto sesuka hati. 📸</p>
-    <div class="gallery" aria-live="polite">
-      <!-- GANTI link gambar dengan foto kalian -->
-      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1200&auto=format&fit=crop" alt="momen 1" onclick="openLightbox(this)" />
-      <img src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?q=80&w=1200&auto=format&fit=crop" alt="momen 2" onclick="openLightbox(this)" />
-      <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac2?q=80&w=1200&auto=format&fit=crop" alt="momen 3" onclick="openLightbox(this)" />
-      <img src="https://images.unsplash.com/photo-1510279770292-4b34de9f5c23?q=80&w=1200&auto=format&fit=crop" alt="momen 4" onclick="openLightbox(this)" />
-      <img src="https://images.unsplash.com/photo-1520975922131-c8da8e6bf5a4?q=80&w=1200&auto=format&fit=crop" alt="momen 5" onclick="openLightbox(this)" />
-      <img src="https://images.unsplash.com/photo-1504194104404-433180773017?q=80&w=1200&auto=format&fit=crop" alt="momen 6" onclick="openLightbox(this)" />
-    </div>
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()" aria-hidden="true" role="dialog">
-      <img id="lightboxImg" alt="preview" />
-    </div>
-  </section>  <section id="notes" class="section container">
-    <h2>Catatan Cinta</h2>
-    <p class="sub">Tiga alasan kenapa kamu selalu jadi rumah.</p>
-    <div class="notes">
-      <div class="note">
-        <strong>1) Ketawamu menular</strong>
-        <p>Hari paling berat pun jadi lebih ringan kalau kamu ada.</p>
-        <div class="sig">— aku</div>
-      </div>
-      <div class="note">
-        <strong>2) Kamu itu hangat</strong>
-        <p>Pelukanmu: tempat paling aman sedunia.</p>
-        <div class="sig">— aku</div>
-      </div>
-      <div class="note">
-        <strong>3) Kita tim</strong>
-        <p>Ngobrol, bercanda, berantem kecil, balik baik lagi. Selalu bareng.</p>
-        <div class="sig">— aku</div>
-      </div>
-    </div>
-  </section>  <section id="playlist" class="section container">
-    <h2>Playlist Kita</h2>
-    <p class="sub">Ganti dengan link Spotify/YouTube favorit kalian.</p>
-    <div class="card pad">
-      <!-- GANTI src embed di bawah ini -->
-      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0">
-        <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" title="Lagu Kita" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%"></iframe>
-      </div>
-    </div>
-  </section>  <section class="section container">
-    <h2>Kartu Kenangan</h2>
-    <p class="sub">Potongan momen acak yang sayang kalau lupa.</p>
-    <div class="memories">
-      <div class="memory">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" alt="kopi pagi"/></div>
-        <div class="caption">Kopi jam 7, nonton langit cerah.</div>
-      </div>
-      <div class="memory">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop" alt="jalan sore"/></div>
-        <div class="caption">Jalan sore—bahu nempel, hati tenang.</div>
-      </div>
-      <div class="memory">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1533135091724-62cc5402aa20?q=80&w=1200&auto=format&fit=crop" alt="film malam"/></div>
-        <div class="caption">Film jelek, tapi bareng kamu jadi favorit.</div>
-      </div>
-      <div class="memory">
-        <div class="ph"><img src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f6?q=80&w=1200&auto=format&fit=crop" alt="ulang tahun"/></div>
-        <div class="caption">Lilin padam, doa kita lanjut.</div>
-      </div>
-    </div>
-  </section>  <section class="section container">
-    <div class="card pad" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between">
-      <div>
-        <h2>Aku Sayang Kamu, Selalu.</h2>
-        <p class="sub">Klik tombol di kanan kalau lagi kangen berat. 💞</p>
-      </div>
-      <button class="btn" onclick="shootHearts()">Kangen Mode</button>
-    </div>
-  </section>  <footer>
-    <p>Didesain dengan ❤️ oleh aku, khusus buat kamu. © <span id="year"></span></p>
-  </footer>  <script>
-    // Tahun dinamis
-    document.getElementById('year').textContent = new Date().getFullYear();
+      </article>
 
-    // Lightbox sederhana
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    function openLightbox(el){ lbImg.src = el.src; lb.style.display = 'grid'; lb.setAttribute('aria-hidden','false'); }
-    function closeLightbox(){ lb.style.display = 'none'; lb.setAttribute('aria-hidden','true'); }
+      <!-- Slide 2 -->
+      <article class="slide" data-ini="#slide-3" data-itu="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-ini-label="Lanjut" data-itu-label="Putar Lagu">
+        <figure class="photo"><img src="https://images.unsplash.com/photo-1535025287451-0e7529a26f78?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 2"/></figure>
+        <div class="caption">
+          <h2 class="title">Momen Favorit</h2>
+          <p class="lead">Ingat pertama kali kita tertawa bareng? Aku suka banget liat senyum kamu. 💞</p>
+          <div class="cta">
+            <a class="btn go-ini" href="#">Ke Ini</a>
+            <a class="btn alt go-itu" href="#">Ke Itu</a>
+          </div>
+        </div>
+      </article>
 
-    // Konfeti hati (tanpa library)
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let hearts = []; let running = false;
-    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
-    addEventListener('resize', resize); resize();
+      <!-- Slide 3 -->
+      <article class="slide" data-ini="#slide-1" data-itu="#surat" data-ini-label="Balik Awal" data-itu-label="Baca Surat">
+        <figure class="photo"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop" alt="Foto kenangan 3"/></figure>
+        <div class="caption">
+          <h2 class="title">Untuk Kita</h2>
+          <p class="lead">Aku bersyukur setiap hari ada kamu. Semoga halaman ini bikin kamu senyum, kapan pun kamu buka. 🌸</p>
+          <div class="cta">
+            <a class="btn go-ini" href="#">Ke Ini</a>
+            <a class="btn alt go-itu" href="#">Ke Itu</a>
+          </div>
+        </div>
+      </article>
+    </div>
 
-    function makeHeart(){
-      const x = Math.random()*canvas.width;
-      const y = -20; const size = 8 + Math.random()*14; const speed = 1 + Math.random()*2;
-      const rot = Math.random()*Math.PI; const drift = (Math.random()-.5)*1.5;
-      return {x,y,size,speed,rot,drift,life:0};
-    }
-    function drawHeart(h){
-      const s = h.size; ctx.save(); ctx.translate(h.x,h.y); ctx.rotate(h.rot);
-      ctx.fillStyle = 'rgba(255,110,167,'+(0.9 - h.life*0.001)+')';
-      ctx.beginPath();
-      ctx.moveTo(0, s/3);
-      ctx.bezierCurveTo(0, -s/2, -s, -s/2, -s, s/6);
-      ctx.bezierCurveTo(-s, s, -s/6, s*1.2, 0, s*1.6);
-      ctx.bezierCurveTo(s/6, s*1.2, s, s, s, s/6);
-      ctx.bezierCurveTo(s, -s/2, 0, -s/2, 0, s/3);
-      ctx.closePath(); ctx.fill(); ctx.restore();
-    }
-    function tick(){
-      if(!running) return;
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      hearts.forEach(h=>{
-        h.y += h.speed; h.x += h.drift*Math.sin(h.life/20); h.rot += 0.01; h.life+=1;
-      });
-      hearts = hearts.filter(h=> h.y < canvas.height+40 && h.life < 1200);
-      hearts.forEach(drawHeart);
-      requestAnimationFrame(tick);
-    }
-    function shootHearts(){
-      for(let i=0;i<80;i++) hearts.push(makeHeart());
-      if(!running){ running = true; tick(); setTimeout(()=>running=false, 2500); }
+    <div class="ctrl" aria-hidden="false" aria-label="Navigasi slide">
+      <button class="prev" id="prev" aria-label="Sebelumnya">◀</button>
+      <button class="next" id="next" aria-label="Berikutnya">▶</button>
+    </div>
+  </div>
+</main>
+
+<div class="dots" id="dots" role="tablist" aria-label="Indikator slide"></div>
+
+<!-- SURAT CINTA -->
+<section id="surat" class="container">
+  <div class="card">
+    <h2 style="margin:.2rem 0 10px">Surat Cinta 💌</h2>
+    <div class="letter" id="letter"></div>
+    <p style="color:var(--muted);margin-top:8px">Ubah isi surat di variabel <code>LETTER</code> pada bagian &lt;script&gt;.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <small>© <span id="y"></span> <span id="brandFoot">Kita Berdua</span></small>
+    <small><a href="#" onclick="scrollTo({top:0,behavior:'smooth'});return false">⬆ Ke atas</a></small>
+  </div>
+</footer>
+
+  </div>  <script>
+    // ====== PERSONALISASI CEPAT ======
+    const BRAND = 'Untuk Kamu';
+    const LETTER = `Hai Sayang,\n\nTerima kasih sudah jadi rumah paling hangat buatku. Kalau hari kamu terasa berat, geser saja halaman ini pelan-pelan—semoga setiap foto mengingatkan kita pada tawa yang sama. Aku sayang kamu.\n\n— Aku`;
+
+    document.getElementById('brand').textContent = BRAND;
+    document.getElementById('brandFoot').textContent = BRAND;
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Isi surat (typewriter ringan)
+    const letterEl = document.getElementById('letter');
+    let i=0; const txt=LETTER; (function type(){ if(i<=txt.length){ letterEl.textContent = txt.slice(0,i++); setTimeout(type,16);} })();
+
+    // ====== SLIDES / CAROUSEL LOGIC ======
+    const frame = document.getElementById('frame');
+    const track = document.getElementById('track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const dots = document.getElementById('dots');
+
+    // Beri id unik ke tiap slide
+    slides.forEach((s,idx)=>{ if(!s.id) s.id = `slide-${idx+1}`; });
+
+    let index = 0;
+    function go(i){
+      index = (i + slides.length) % slides.length;
+      const x = -index * frame.clientWidth;
+      track.style.transform = `translateX(${x}px)`;
+      updateDots();
+      // Perbarui tombol Ke Ini / Ke Itu per slide
+      const active = slides[index];
+      const iniHref = active.dataset.ini || '#';
+      const ituHref = active.dataset.itu || '#';
+      const iniLabel = active.dataset.iniLabel || 'Ke Ini';
+      const ituLabel = active.dataset.ituLabel || 'Ke Itu';
+      active.querySelectorAll('.go-ini').forEach(a=>{ a.href = iniHref; a.textContent = iniLabel; });
+      active.querySelectorAll('.go-itu').forEach(a=>{ a.href = ituHref; a.textContent = ituLabel; });
     }
 
-    // Smooth scroll untuk anchor
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); })
-    })
-  </script>  <!-- PETUNJUK CEPAT (hapus bagian ini jika sudah paham)
-    1) Ganti teks, tanggal, dan foto sesuai hubungan kalian.
-    2) Ubah warna tema di :root --accent (misal #8b5cf6 untuk ungu).
-    3) Hosting: cukup upload file ini ke hosting kamu sebagai index.html.
-    4) Tambah momen: duplikasi .moment pada bagian Timeline.
-    5) Tambah foto: tambahkan <img ... onclick="openLightbox(this)"> di .gallery.
-  --></body>
+    // Resize handler agar lebar track pas
+    function size(){ track.style.width = `${slides.length * frame.clientWidth}px`; go(index); }
+    window.addEventListener('resize', size); size();
+
+    prevBtn.addEventListener('click', ()=>go(index-1));
+    nextBtn.addEventListener('click', ()=>go(index+1));
+
+    // Keyboard
+    frame.addEventListener('keydown', e=>{ if(e.key==='ArrowLeft') go(index-1); if(e.key==='ArrowRight') go(index+1); });
+
+    // Swipe (touch)
+    let sx=0, dx=0, dragging=false;
+    frame.addEventListener('touchstart', e=>{ dragging=true; sx=e.touches[0].clientX; dx=0; }, {passive:true});
+    frame.addEventListener('touchmove', e=>{ if(!dragging) return; dx=e.touches[0].clientX - sx; track.style.transform = `translateX(${-index*frame.clientWidth + dx}px)`; }, {passive:true});
+    frame.addEventListener('touchend', ()=>{ dragging=false; if(Math.abs(dx)>50){ if(dx<0) go(index+1); else go(index-1);} else go(index); });
+
+    // Dots
+    function buildDots(){
+      dots.innerHTML = '';
+      slides.forEach((_,i)=>{ const b=document.createElement('button'); b.className='dot'; b.setAttribute('role','tab'); b.setAttribute('aria-label',`Slide ${i+1}`); b.addEventListener('click',()=>go(i)); dots.appendChild(b); });
+      updateDots();
+    }
+    function updateDots(){
+      Array.from(dots.children).forEach((d,i)=>{ d.classList.toggle('active', i===index); });
+    }
+    buildDots();
+    go(0);
+
+    // Fullscreen toggle
+    const fsBtn = document.getElementById('fs');
+    fsBtn.addEventListener('click', async ()=>{
+      const el = document.documentElement; // layar penuh seluruh dokumen
+      if(!document.fullscreenElement){ await el.requestFullscreen?.(); fsBtn.textContent='Keluar Layar Penuh'; }
+      else { await document.exitFullscreen?.(); fsBtn.textContent='Layar Penuh'; }
+    });
+
+    // ====== CARA KUSTOM SLIDE ======
+    // Per slide, atur atribut:
+    // data-ini:    href untuk tombol "Ke Ini" (contoh: #slide-3 atau https://...)
+    // data-itu:    href untuk tombol "Ke Itu" (contoh: #surat atau https://...)
+    // data-ini-label: teks tombol "Ke Ini"
+    // data-itu-label: teks tombol "Ke Itu"
+    // Ganti gambar: <img src="..."> dan teks caption sesuai kebutuhan.
+  </script></body>
 </html>
