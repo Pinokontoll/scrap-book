@@ -158,13 +158,24 @@ lelah lelah ku hilang saat ada di sisimu.</p>
   <h2>Playlist Kita</h2>
   <p class="sub">Lagu yang kamu tulis di Notebook kala itu.</p>
   <div class="card pad">
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0">
-      <iframe src="https://www.youtube.com/embed/s6H6ffS6zJI?autoplay=1&mute=1"
-        title="Lagu Kita" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="position:absolute; inset:0; width:100%; height:100%">
-</iframe>
+    <div style="text-align:center; margin-top:20px;">
+  <button class="btn" onclick="playSong()">▶️ Play Musik 💖</button>
+</div>
+
+<div id="ytPlayer" style="display:none; position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:16px; border:1px solid #ffe6f0; margin-top:20px;">
+  <iframe id="player" src="https://www.youtube.com/embed/s6H6ffS6zJI?autoplay=1"
+    title="Lagu Kita" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position:absolute; inset:0; width:100%; height:100%">
+  </iframe>
+</div>
+
+<script>
+  function playSong(){
+    document.getElementById("ytPlayer").style.display = "block";
+  }
+</script>
     </div>
   </div>
   </section>  <section id="gallery" class="section container">
